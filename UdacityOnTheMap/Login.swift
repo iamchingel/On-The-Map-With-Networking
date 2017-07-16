@@ -14,7 +14,7 @@ func attemptLogin(completion : @escaping (String)-> Void) {
     
 
     
-    let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+    let request = NSMutableURLRequest(url: URL(string: "hxttps://www.udacity.com/api/session")!)
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Accept")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
