@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 func attemptLogin(completion : @escaping (String)-> Void) {
@@ -23,12 +24,27 @@ func attemptLogin(completion : @escaping (String)-> Void) {
         
         guard error == nil else {
             print("Check network Connection")
+            
+        /*The following code doesn't work...why????
+           
+             DispatchQueue.main.async {
+                LoginViewController().alertView(title: "Network Error", message: "Please check you network connection")
+            }
+        */
             return
         }
         
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
             print("wrong email id or password")
-            return
+          
+            /*The following code doesn't work...why????
+             
+            DispatchQueue.main.async {
+                LoginViewController().alertView(title: "Incorrect Credentials", message: "Please enter correct email id and password")
+            }
+          
+           */
+             return
         }
         
         guard let data = data else {

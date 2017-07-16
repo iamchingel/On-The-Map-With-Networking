@@ -15,9 +15,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
         emailTextField.delegate = self
         passwordTextField.delegate = self
+ 
     }
     
     
@@ -51,6 +51,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+    
+    func alertView(title:String,message:String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion:nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
   
