@@ -18,11 +18,17 @@ func getStudentLocations (completion : @escaping ([[String:AnyObject]])->Void) {
         
         guard error == nil else {
             print("error while requesting data")
+            
             return
         }
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
             print("Status Code was other than 2xx🍋")
-            
+          /*
+             DispatchQueue.main.async {
+             LoginViewController().alertView(title: "Download Failed", message: "Something Went Wrong!")
+             }
+          */
+ 
             return
         }
         guard let data = data else {

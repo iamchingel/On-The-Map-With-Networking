@@ -16,6 +16,7 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         enterLocationTextField.delegate = self
     }
+    
 
     @IBOutlet weak var enterLocationTextField: UITextField!
     @IBAction func findOnTheMapButtonPressed(_ sender: Any) {
@@ -30,6 +31,9 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
         let controller = storyboard?.instantiateViewController(withIdentifier: "SubmitURLViewController") as! SubmitURLViewController
         present(controller, animated: true, completion: nil)
         
+    }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
   
     

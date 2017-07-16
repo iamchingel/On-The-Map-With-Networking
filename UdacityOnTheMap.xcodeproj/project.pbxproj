@@ -76,8 +76,8 @@
 			children = (
 				C811BD1B1F171F9A009EDDF1 /* AppDelegate.swift */,
 				C846E8491F1724930056678F /* Variables.swift */,
-				C811BD2F1F17207B009EDDF1 /* Networking */,
-				C846E84B1F1758330056678F /* View Controllers */,
+				C84CD88E1F1B59EB00015CF2 /* Model */,
+				C846E84B1F1758330056678F /* Controller */,
 				C811BD1F1F171F9A009EDDF1 /* Main.storyboard */,
 				C811BD221F171F9A009EDDF1 /* Assets.xcassets */,
 				C811BD241F171F9A009EDDF1 /* LaunchScreen.storyboard */,
@@ -98,7 +98,7 @@
 			name = Networking;
 			sourceTree = "<group>";
 		};
-		C846E84B1F1758330056678F /* View Controllers */ = {
+		C846E84B1F1758330056678F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				C811BD1D1F171F9A009EDDF1 /* LoginViewController.swift */,
@@ -107,7 +107,23 @@
 				C8A58A331F1A275400D026B4 /* InfoPostViewController.swift */,
 				C8A58A351F1A2BBF00D026B4 /* SubmitURLViewController.swift */,
 			);
-			name = "View Controllers";
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		C84CD88E1F1B59EB00015CF2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C84CD88F1F1B59F800015CF2 /* Clients */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C84CD88F1F1B59F800015CF2 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				C811BD2F1F17207B009EDDF1 /* Networking */,
+			);
+			name = Clients;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

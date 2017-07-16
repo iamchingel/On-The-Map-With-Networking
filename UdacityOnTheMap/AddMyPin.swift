@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 func addMyOwnPin(completion : ()->Void){
     
@@ -31,6 +32,11 @@ func addMyOwnPin(completion : ()->Void){
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Status Code was other than 2xx")
                 
+                /*
+                DispatchQueue.main.async {
+                    LoginViewController().alertView(title: "Request Failed", message: nil)
+                }
+                */
                 return
             }
             guard let data = data else {
