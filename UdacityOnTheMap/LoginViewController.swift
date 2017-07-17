@@ -30,7 +30,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginPassword = passwordTextField.text
         
        
-        attemptLogin {_ in
+        UdacityClient().attemptLogin {_ in
             self.completeLogin()
         }
        

@@ -19,12 +19,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
      
         
-        getStudentLocations { _ in 
+        UdacityClient().getStudentLocations { _ in
             self.drawPins(arrayOfDictionaries: studentData!)
         }
         
-        attemptLogin { _ in
-            getMyDetails(userID: userID!)
+        UdacityClient().attemptLogin { _ in
+            UdacityClient().getMyDetails(userID: userID!)
         }
         
     }
@@ -34,7 +34,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
      //I don't think its working correctly 
         
        
-            logout { _ in
+            UdacityClient().logout { _ in
                 self.completeLogout()
             }
        

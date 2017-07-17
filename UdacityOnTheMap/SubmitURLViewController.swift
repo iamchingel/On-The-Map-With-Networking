@@ -73,7 +73,7 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
          myURL = enterURLTextField.text
        
         
-        addMyOwnPin{
+        UdacityClient().addMyOwnPin{
             goBackToMapView()
         }
         
