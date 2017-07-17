@@ -156,7 +156,7 @@ class UdacityClient: NSObject {
             }
             
             completion(logoutSessionID! as! String)
-            print("🍛",logoutSessionID,"🍛")
+            print("🍛",logoutSessionID!,"🍛")
             
             
         }
