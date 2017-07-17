@@ -18,6 +18,10 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     var pointAnnotation:MKPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     
+    //adding activity Indicator
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +33,14 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
         localSearchRequest.naturalLanguageQuery = myLocation!
         localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (localSearchResponse, error) -> Void in
+            
+           
+            self.activityIndicator.center = self.view.center
+            self.activityIndicator.hidesWhenStopped = true
+            self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            self.view.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
+            
             
             if localSearchResponse == nil{
                 let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.alert)
@@ -56,7 +68,7 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
             locationLatitude = localSearchResponse?.boundingRegion.center.latitude
             locationLongitude = localSearchResponse?.boundingRegion.center.longitude
             
-            
+            self.activityIndicator.stopAnimating()
             
         }
         
@@ -99,6 +111,11 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
         
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
         self.present(controller!, animated: true, completion: nil)
+        
+        
+        //Now my pin won't till i relaunch the app. Maybe I need the refresh button.
+      //  self.presentingViewController!.presentingViewController!.dismiss(animated: true, completion: nil)
+        
         
     }
     

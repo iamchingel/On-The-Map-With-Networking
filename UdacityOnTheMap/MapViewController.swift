@@ -14,22 +14,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
-    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //trying to add acitivity indicator
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        
         
         UdacityClient().getStudentLocations { _ in
             self.drawPins(arrayOfDictionaries: studentData!)
-            self.activityIndicator.stopAnimating()
         }
         
         UdacityClient().attemptLogin { _ in
@@ -38,6 +33,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
         
     }
+ 
     
     @IBAction func LogoutButtonWasPressed(_ sender: Any) {
         
@@ -52,6 +48,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     
+    @IBAction func refreshButtonPressed(_ sender: Any) {
+      // below code doesn't work
+        
+        DispatchQueue.main.async {
+            self.map.reloadInputViews()
+        }
+    }
     
     
     
@@ -130,10 +133,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func completeLogout() {
         // why isn't this working?
         
-        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+       /* let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
         self.present(controller!, animated: true, completion: nil)
         
         print("we should log out now")
+         */     DispatchQueue.main.async{
+        self.dismiss(animated: true, completion: nil)
+        }
     }
 
 

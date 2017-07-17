@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -37,11 +38,18 @@
                                                 <action selector="LogoutButtonWasPressed:" destination="HLA-97-S2S" id="375-Xk-vnx"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="icon_pin" id="3AB-XW-mya">
-                                            <connections>
-                                                <segue destination="Nte-FJ-jKH" kind="show" id="FmY-VP-92U"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem image="icon_pin" id="3AB-XW-mya">
+                                                <connections>
+                                                    <segue destination="Nte-FJ-jKH" kind="show" id="FmY-VP-92U"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem image="icon_refresh" id="b9o-Ip-epP">
+                                                <connections>
+                                                    <action selector="refreshButtonPressed:" destination="HLA-97-S2S" id="t1H-md-XAW"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -121,6 +129,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="C5l-oo-E9h"/>
+                    <connections>
+                        <outlet property="tableView" destination="iP0-ms-8M3" id="Z90-L0-lcY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oS-3t-Y8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -466,6 +477,7 @@ today?</string>
         <image name="icon_listview-selected" width="75" height="50"/>
         <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>
+        <image name="icon_refresh" width="24" height="24"/>
         <image name="logo-u" width="62" height="62"/>
     </resources>
 </document>

@@ -11,9 +11,14 @@ import UIKit
 class UdacityClient: NSObject {
 
  
+    
+    //var movies: [Movie] = [Movie]()
+    var students: [StudentInformation] = [StudentInformation]()
+    
+    
 //LOGIN
     
-    func attemptLogin(completion : @escaping (String)-> Void) {
+    func attemptLogin( completion : @escaping (String)-> Void) {
    
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
@@ -32,6 +37,9 @@ class UdacityClient: NSObject {
                  LoginViewController().alertView(title: "Network Error", message: "Please check you network connection")
                  }
                  */
+
+
+                
                 return
             }
             
@@ -209,7 +217,17 @@ class UdacityClient: NSObject {
             }
             //result is of the type [[String:Any]]
             print(results)
+            
+           
+            //saving data to "Student Information Structure and I don't feel like using it right now" 
+            
+            self.students = StudentInformation.studentsFromResults(results)
+            
+            
+            
             print("🥗🍇🍉",results.count,"🍇🥗🍉")
+            
+            print("🏓🍟🥒🌶🍚",self.students,"🏓🍟🥒🌶🍚")
             
             //🍇 updating student Data...Uncomment the line below
             studentData = results

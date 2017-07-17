@@ -10,12 +10,14 @@ import UIKit
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
  
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutNow))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_pin"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(addLocation))
-        
+        let button1 = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_pin"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(addLocation))
+        let button2 = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(refresh))
+        self.navigationItem.rightBarButtonItems = [button1,button2]
     }
 
     
@@ -73,11 +75,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func completeLogout() {
          
-        
+      /*
         let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
         self.present(controller!, animated: true, completion: nil)
         
         print("we should log out now")
+         */     DispatchQueue.main.async{
+        self.dismiss(animated: true, completion: nil)
+        }
     }
     
     func addLocation() {
@@ -85,5 +90,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.present(controller!, animated: true, completion: nil)
     }
    
+    func refresh(){
+        //doesn't refresh the tableView...why????  below code doesn't work
+        
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
+    }
 
 }

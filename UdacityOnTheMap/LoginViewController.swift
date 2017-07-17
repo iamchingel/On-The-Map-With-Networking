@@ -34,6 +34,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
        
         UdacityClient().attemptLogin {_ in
             self.completeLogin()
+            self.alertView(title: "Network Error", message: "Please check your network connection")
         }
        
         
