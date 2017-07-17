@@ -14,18 +14,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
+    var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-     
+        //trying to add acitivity indicator
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         
         UdacityClient().getStudentLocations { _ in
             self.drawPins(arrayOfDictionaries: studentData!)
+            self.activityIndicator.stopAnimating()
         }
         
         UdacityClient().attemptLogin { _ in
             UdacityClient().getMyDetails(userID: userID!)
         }
+
         
     }
     
