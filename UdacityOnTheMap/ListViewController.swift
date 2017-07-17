@@ -14,6 +14,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
  
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutNow))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_pin"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(addLocation))
         
     }
 
@@ -71,7 +72,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func completeLogout() {
-        // why isn't this working?
+         
         
         let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
         self.present(controller!, animated: true, completion: nil)
@@ -79,6 +80,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("we should log out now")
     }
     
+    func addLocation() {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "NavigationController")
+        self.present(controller!, animated: true, completion: nil)
+    }
    
 
 }

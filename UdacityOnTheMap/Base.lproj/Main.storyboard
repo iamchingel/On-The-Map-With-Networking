@@ -279,7 +279,7 @@
                                 <rect key="frame" x="75" y="536" width="225" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="1a1-S4-ZSr"/>
+                                    <constraint firstAttribute="height" constant="45" id="Wvt-QI-Wpb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="25"/>
                                 <state key="normal" title="Submit">
@@ -289,18 +289,8 @@
                                     <action selector="submitButtonPressed:" destination="upk-Cb-biC" eventType="touchUpInside" id="lyi-7f-tjT"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVt-up-rM2">
-                                <rect key="frame" x="0.0" y="128" width="375" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="M91-bX-cvT"/>
-                                    <constraint firstAttribute="width" constant="375" id="PSe-oa-R42"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-ty-zkv">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Enter URL" id="IXh-YN-wOg">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XeU-FC-RxE">
@@ -311,24 +301,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVt-up-rM2">
+                                <rect key="frame" x="0.0" y="134" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1IG-4P-989"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wVt-up-rM2" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="0Ov-d9-wMY"/>
-                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="368" id="0Ze-Dg-sCt"/>
-                            <constraint firstAttribute="trailing" secondItem="302-CS-Lra" secondAttribute="trailing" id="7KN-tC-1Jn"/>
-                            <constraint firstAttribute="trailing" secondItem="3cO-ty-zkv" secondAttribute="trailing" id="BaC-Y9-1rr"/>
-                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="UAq-Ge-y3y" secondAttribute="bottom" constant="86" id="IL4-He-Swa"/>
-                            <constraint firstItem="3cO-ty-zkv" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="MV4-xR-dlT"/>
-                            <constraint firstItem="3cO-ty-zkv" firstAttribute="top" secondItem="goi-ir-Le1" secondAttribute="top" id="Uos-rK-bl2"/>
-                            <constraint firstItem="302-CS-Lra" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="73" id="Vl5-E5-GaN"/>
-                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="302-CS-Lra" secondAttribute="bottom" id="Yoo-vr-6cL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UAq-Ge-y3y" secondAttribute="trailing" constant="59" id="aeD-Tk-dqf"/>
-                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leadingMargin" constant="59" id="gC0-nF-7Is"/>
-                            <constraint firstItem="302-CS-Lra" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="o5i-QL-C6W"/>
-                            <constraint firstAttribute="trailing" secondItem="wVt-up-rM2" secondAttribute="trailing" id="urX-nK-zyj"/>
-                            <constraint firstAttribute="trailing" secondItem="3cO-ty-zkv" secondAttribute="trailing" id="vKs-hK-0ss"/>
-                            <constraint firstItem="3cO-ty-zkv" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="zCV-Q1-irJ"/>
+                            <constraint firstItem="302-CS-Lra" firstAttribute="bottom" secondItem="uVj-Yk-WD9" secondAttribute="top" id="95G-W9-Igt"/>
+                            <constraint firstItem="3cO-ty-zkv" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="A65-Oz-CE1"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="leading" secondItem="3cO-ty-zkv" secondAttribute="leading" id="Dhi-1o-1S2"/>
+                            <constraint firstItem="302-CS-Lra" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="67" id="E0E-bO-cFb"/>
+                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leadingMargin" constant="59" id="FO3-Tr-nKx"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="trailing" secondItem="3cO-ty-zkv" secondAttribute="trailing" id="FT6-N8-HKZ"/>
+                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="UAq-Ge-y3y" secondAttribute="bottom" constant="86" id="Fun-wJ-XgP"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="top" secondItem="3cO-ty-zkv" secondAttribute="bottom" constant="70" id="PpI-2a-f9i"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="trailing" secondItem="302-CS-Lra" secondAttribute="trailing" id="QAM-aV-1T9"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="centerX" secondItem="UAq-Ge-y3y" secondAttribute="centerX" id="ZcJ-7T-nXg"/>
+                            <constraint firstAttribute="trailing" secondItem="3cO-ty-zkv" secondAttribute="trailing" id="xRT-Ct-ZHB"/>
+                            <constraint firstItem="3cO-ty-zkv" firstAttribute="top" secondItem="RAj-IV-UNa" secondAttribute="bottom" id="xeb-gh-DlN"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="leading" secondItem="302-CS-Lra" secondAttribute="leading" id="yrM-WG-SqK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eyJ-iZ-J0T">
@@ -430,7 +427,7 @@ today?</string>
         <!--Navigation Controller-->
         <scene sceneID="XFL-85-Ydy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nte-FJ-jKH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Nte-FJ-jKH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dkr-sC-rT2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
