@@ -13,6 +13,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
  
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: UIBarButtonItemStyle.plain, target: self, action: #selector(logoutNow))
         
     }
 
@@ -58,6 +59,24 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         else {
             UIApplication.shared.open(URL(string: studentURL as! String)!, options: [:], completionHandler: nil)
         }
+    }
+    
+    
+    func logoutNow () {
+        
+        UdacityClient().logout { _ in
+            self.completeLogout()
+        }
+        
+    }
+    
+    func completeLogout() {
+        // why isn't this working?
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+        self.present(controller!, animated: true, completion: nil)
+        
+        print("we should log out now")
     }
     
    

@@ -79,14 +79,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="HLA-97-S2S" kind="relationship" relationship="viewControllers" id="vZm-ez-9R8"/>
-                        <segue destination="1KU-AA-d8Z" kind="relationship" relationship="viewControllers" id="Q7e-Sr-NZL"/>
+                        <segue destination="PgJ-gR-9m2" kind="relationship" relationship="viewControllers" id="Q7e-Sr-NZL"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXh-t0-nEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="837.60000000000002" y="139.880059970015"/>
         </scene>
-        <!--List-->
+        <!--List View Controller-->
         <scene sceneID="82B-uQ-jn1">
             <objects>
                 <viewController storyboardIdentifier="ListViewController" id="1KU-AA-d8Z" customClass="ListViewController" customModule="UdacityOnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -120,11 +120,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="uTM-cz-y39"/>
+                    <navigationItem key="navigationItem" id="C5l-oo-E9h"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oS-3t-Y8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="838" y="905"/>
+            <point key="canvasLocation" x="1776.8" y="904.49775112443785"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="FkU-iY-Bot">
@@ -273,20 +273,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="302-CS-Lra">
-                                <rect key="frame" x="0.0" y="167" width="375" height="500"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="hla-SO-pNP"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="241" width="375" height="426"/>
                             </mapView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVt-up-rM2">
-                                <rect key="frame" x="0.0" y="52" width="375" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAq-Ge-y3y">
-                                <rect key="frame" x="75" y="534" width="225" height="45"/>
+                                <rect key="frame" x="75" y="536" width="225" height="45"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="1a1-S4-ZSr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="25"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="0.094115188089999996" green="0.28683147959999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -295,22 +289,51 @@
                                     <action selector="submitButtonPressed:" destination="upk-Cb-biC" eventType="touchUpInside" id="lyi-7f-tjT"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wVt-up-rM2">
+                                <rect key="frame" x="0.0" y="128" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="M91-bX-cvT"/>
+                                    <constraint firstAttribute="width" constant="375" id="PSe-oa-R42"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cO-ty-zkv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Enter URL" id="IXh-YN-wOg">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XeU-FC-RxE">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="upk-Cb-biC" id="xSh-4R-hDP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leadingMargin" constant="59" id="BwL-q3-6Fx"/>
-                            <constraint firstItem="wVt-up-rM2" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="CRy-6Y-hBO"/>
-                            <constraint firstAttribute="trailing" secondItem="302-CS-Lra" secondAttribute="trailing" id="LFR-h1-4LP"/>
-                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="UAq-Ge-y3y" secondAttribute="bottom" constant="88" id="Nrd-oc-8GV"/>
-                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="452" id="bXs-HU-9SD"/>
-                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="302-CS-Lra" secondAttribute="bottom" id="cqb-ce-Hcc"/>
-                            <constraint firstItem="302-CS-Lra" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="85" id="ffg-nw-DDa"/>
-                            <constraint firstItem="302-CS-Lra" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="85" id="irX-LD-7Rg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UAq-Ge-y3y" secondAttribute="trailing" constant="59" id="lHT-0f-kZp"/>
-                            <constraint firstItem="302-CS-Lra" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="uQq-ir-rf9"/>
-                            <constraint firstAttribute="trailing" secondItem="wVt-up-rM2" secondAttribute="trailing" id="vJC-l7-eQr"/>
+                            <constraint firstItem="wVt-up-rM2" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="0Ov-d9-wMY"/>
+                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="368" id="0Ze-Dg-sCt"/>
+                            <constraint firstAttribute="trailing" secondItem="302-CS-Lra" secondAttribute="trailing" id="7KN-tC-1Jn"/>
+                            <constraint firstAttribute="trailing" secondItem="3cO-ty-zkv" secondAttribute="trailing" id="BaC-Y9-1rr"/>
+                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="UAq-Ge-y3y" secondAttribute="bottom" constant="86" id="IL4-He-Swa"/>
+                            <constraint firstItem="3cO-ty-zkv" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="MV4-xR-dlT"/>
+                            <constraint firstItem="3cO-ty-zkv" firstAttribute="top" secondItem="goi-ir-Le1" secondAttribute="top" id="Uos-rK-bl2"/>
+                            <constraint firstItem="302-CS-Lra" firstAttribute="top" secondItem="wVt-up-rM2" secondAttribute="bottom" constant="73" id="Vl5-E5-GaN"/>
+                            <constraint firstItem="uVj-Yk-WD9" firstAttribute="top" secondItem="302-CS-Lra" secondAttribute="bottom" id="Yoo-vr-6cL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UAq-Ge-y3y" secondAttribute="trailing" constant="59" id="aeD-Tk-dqf"/>
+                            <constraint firstItem="UAq-Ge-y3y" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leadingMargin" constant="59" id="gC0-nF-7Is"/>
+                            <constraint firstItem="302-CS-Lra" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="o5i-QL-C6W"/>
+                            <constraint firstAttribute="trailing" secondItem="wVt-up-rM2" secondAttribute="trailing" id="urX-nK-zyj"/>
+                            <constraint firstAttribute="trailing" secondItem="3cO-ty-zkv" secondAttribute="trailing" id="vKs-hK-0ss"/>
+                            <constraint firstItem="3cO-ty-zkv" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="zCV-Q1-irJ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="eyJ-iZ-J0T">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fre-ug-lDh"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="enterURLTextField" destination="wVt-up-rM2" id="p9U-Me-22Q"/>
                         <outlet property="mapView" destination="302-CS-Lra" id="H1I-YF-B6U"/>
@@ -318,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7A-I1-ECy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4308" y="139.880059970015"/>
+            <point key="canvasLocation" x="4265" y="140"/>
         </scene>
         <!--Info Post View Controller-->
         <scene sceneID="tAz-wb-hLu">
@@ -421,6 +444,25 @@ today?</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="veq-1J-9jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2485.5999999999999" y="139.880059970015"/>
+        </scene>
+        <!--List-->
+        <scene sceneID="Vdr-T7-Ery">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PgJ-gR-9m2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="uTM-cz-y39"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MZj-O6-pF3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1KU-AA-d8Z" kind="relationship" relationship="rootViewController" id="GID-G5-shX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RuQ-4N-byK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="837.60000000000002" y="904.49775112443785"/>
         </scene>
     </scenes>
     <resources>

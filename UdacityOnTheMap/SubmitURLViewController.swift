@@ -78,6 +78,9 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
