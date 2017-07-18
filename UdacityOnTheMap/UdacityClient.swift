@@ -18,7 +18,7 @@ class UdacityClient: NSObject {
     
 //LOGIN
     
-    func attemptLogin( completion : @escaping (_ userID: String?)-> Void) {
+    func attemptLogin( completionForLogin : @escaping (_ userID: String?, _ error: Error?, _ status: Int?)-> Void) {
    
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
@@ -32,7 +32,7 @@ class UdacityClient: NSObject {
                 print("Check network Connection")
                 
                 
-                
+                completionForLogin(nil, error, nil)
                 /*The following code doesn't work...why????
                  
                  DispatchQueue.main.async {
@@ -48,6 +48,7 @@ class UdacityClient: NSObject {
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("wrong email id or password")
                 
+               completionForLogin(nil, nil, (response as? HTTPURLResponse)?.statusCode)
                 /*The following code doesn't work...why????
                  
                  DispatchQueue.main.async {
@@ -102,7 +103,7 @@ class UdacityClient: NSObject {
             userID = key
             
             DispatchQueue.main.async{
-                completion(userID!)
+                completionForLogin(userID!, nil, nil)
             }
             
             
@@ -177,7 +178,7 @@ class UdacityClient: NSObject {
     }
 //GETing student locations
     
-    func getStudentLocations (completion : @escaping ([[String:AnyObject]])->Void) {
+    func getStudentLocations (completionForStudentLocations : @escaping (_ studentInfo: [[String:AnyObject]]?, _ status: Int?)->Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -192,6 +193,8 @@ class UdacityClient: NSObject {
             }
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Status Code was other than 2xx🍋")
+                
+                completionForStudentLocations(nil,(response as? HTTPURLResponse)?.statusCode)
                 /*
                  DispatchQueue.main.async {
                  LoginViewController().alertView(title: "Download Failed", message: "Something Went Wrong!")
@@ -234,7 +237,7 @@ class UdacityClient: NSObject {
             //🍇 updating student Data...Uncomment the line below
             studentData = results
             
-            completion(studentData!)
+            completionForStudentLocations(studentData!,nil)
             
         }
         task.resume()
@@ -298,7 +301,7 @@ class UdacityClient: NSObject {
 
  //Add My Pin on the Map
     
-    func addMyOwnPin(completion : ()->Void){
+    func addMyOwnPin(completion : @escaping (_ status : Int?)->Void){
         
         
         
@@ -321,6 +324,7 @@ class UdacityClient: NSObject {
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Status Code was other than 2xx")
                 
+                completion((response as? HTTPURLResponse)?.statusCode)
                 /*
                  DispatchQueue.main.async {
                  LoginViewController().alertView(title: "Request Failed", message: nil)
@@ -344,12 +348,12 @@ class UdacityClient: NSObject {
             
             print("🍏",parsedResult,"🍏")
             
-            
+            completion(nil)
             
         }
         task.resume()
         
-        completion()
+        
         
         
     }

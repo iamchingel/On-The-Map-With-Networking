@@ -32,11 +32,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginPassword = passwordTextField.text
         
        
-        UdacityClient().attemptLogin {_ in
-            self.completeLogin()
-            self.alertView(title: "Network Error", message: "Please check your network connection")
-        }
+        
        
+        UdacityClient().attemptLogin { (userID, err, status) in
+            if err != nil {
+                DispatchQueue.main.async{
+                self.alertView(title: "Network Error", message: "Please check your network connection")
+                }
+            }
+            if status != nil{
+                DispatchQueue.main.async {
+                    self.alertView(title: "Incorrect Credentials", message: "Please enter correct email id and password")
+                }
+            }
+           
+            self.completeLogin()
+           
+        }
         
     }
     

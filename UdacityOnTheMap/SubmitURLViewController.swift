@@ -84,10 +84,23 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     @IBAction func submitButtonPressed(_ sender: Any) {
          myURL = enterURLTextField.text
        
+        //🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇
         
-        UdacityClient().addMyOwnPin{
-            goBackToMapView()
+        UdacityClient().addMyOwnPin { (response) in
+            if response != nil {
+                DispatchQueue.main.async{
+                self.alertView(title: "Post Failed", message: "Please try again later!")
+                }
+            }
+            DispatchQueue.main.async{
+            self.goBackToMapView()
+            }
         }
+        
+        
+     //    UdacityClient().addMyOwnPin{
+     //       goBackToMapView()
+     //   }
         
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -117,6 +130,17 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
       //  self.presentingViewController!.presentingViewController!.dismiss(animated: true, completion: nil)
         
         
+    }
+    
+    func alertView(title:String,message:String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion:nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     

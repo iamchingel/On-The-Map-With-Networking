@@ -19,18 +19,28 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //trying to add acitivity indicator
-        
-        
-        UdacityClient().getStudentLocations { _ in
-            self.drawPins(arrayOfDictionaries: studentData!)
-        }
-        
-        UdacityClient().attemptLogin { _ in
-            UdacityClient().getMyDetails(userID: userID!)
-        }
  
+         
+       UdacityClient().getStudentLocations { (stuInfo, status) in
+        if stuInfo != nil {
+            DispatchQueue.main.async {
+                self.drawPins(arrayOfDictionaries: studentData!)
+                }
+            }
+        if status != nil {
+            DispatchQueue.main.async {
+                self.alertView(title: "Error Fetching Data", message: "Please try again later!")
+                }
+            }
+        }
+        
+       //       UdacityClient().getStudentLocations { _ in
+        //          self.drawPins(arrayOfDictionaries: studentData!)
+        //      }
+ 
+        UdacityClient().attemptLogin { (UserID, nil, response) in
+            UdacityClient().getMyDetails(userID: UserID!)
+        }
         
     }
  
@@ -142,7 +152,16 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-
+    func alertView(title:String,message:String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion:nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
  
 
 }
