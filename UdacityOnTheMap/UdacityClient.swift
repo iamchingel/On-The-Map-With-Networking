@@ -18,7 +18,7 @@ class UdacityClient: NSObject {
     
 //LOGIN
     
-    func attemptLogin( completion : @escaping (String)-> Void) {
+    func attemptLogin( completion : @escaping (_ userID: String?)-> Void) {
    
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
@@ -30,6 +30,8 @@ class UdacityClient: NSObject {
             
             guard error == nil else {
                 print("Check network Connection")
+                
+                
                 
                 /*The following code doesn't work...why????
                  

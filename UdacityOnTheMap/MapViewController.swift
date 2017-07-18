@@ -30,7 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         UdacityClient().attemptLogin { _ in
             UdacityClient().getMyDetails(userID: userID!)
         }
-
+ 
         
     }
  
