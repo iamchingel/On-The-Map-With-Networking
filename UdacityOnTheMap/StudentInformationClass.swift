@@ -10,8 +10,13 @@ import Foundation
 
 class StudentInformationClass  {
     
+
     
-// what am i supposed to do with this class?????
+
+    var studentDetails: [StudentInformation] = []
+    
+    static let sharedInstance = StudentInformationClass()
     
     
 }
+

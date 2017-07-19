@@ -12,10 +12,6 @@ class UdacityClient: NSObject {
 
  
     
-    //var movies: [Movie] = [Movie]()
-    var students: [StudentInformation] = [StudentInformation]()
-    
-    
 //LOGIN
     
     func attemptLogin( completionForLogin : @escaping (_ userID: String?, _ error: Error?, _ status: Int?)-> Void) {
@@ -223,19 +219,22 @@ class UdacityClient: NSObject {
             //result is of the type [[String:Any]]
             print(results)
             
-           
-            //saving data to "Student Information Structure and I don't feel like using it right now" 
+            StudentInformationClass.sharedInstance.studentDetails = StudentInformation.studentsFromResults(results)
             
-            self.students = StudentInformation.studentsFromResults(results)
-            
-            
+           //saving data to "Student Information Structure and I don't feel like using it right now"
+          //self.students = StudentInformation.studentsFromResults(results)
+         //self.users?.studentsLocationData = StudentInformation.studentsFromResults(results)
             
             print("🥗🍇🍉",results.count,"🍇🥗🍉")
             
-            print("🏓🍟🥒🌶🍚",self.students,"🏓🍟🥒🌶🍚")
+       //      print("🏓🍟🥒🌶🍚",self.students,"🏓🍟🥒🌶🍚")
+      //      print(self.students.count,"🍶🍶🍶🍶🍶🍶🍶🍶🍶")
             
             //🍇 updating student Data...Uncomment the line below
             studentData = results
+            
+            
+           
             
             completionForStudentLocations(studentData!,nil)
             
@@ -301,7 +300,7 @@ class UdacityClient: NSObject {
 
  //Add My Pin on the Map
     
-    func addMyOwnPin(completion : @escaping (_ status : Int?)->Void){
+    func addMyOwnPin(completion : @escaping (_ error : Error?)->Void){
         
         
         
@@ -319,12 +318,15 @@ class UdacityClient: NSObject {
             
             guard error == nil else {
                 print("error while requesting data")
+                
+                completion(error)
+                
                 return
             }
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Status Code was other than 2xx")
                 
-                completion((response as? HTTPURLResponse)?.statusCode)
+               // completion((response as? HTTPURLResponse)?.statusCode)
                 /*
                  DispatchQueue.main.async {
                  LoginViewController().alertView(title: "Request Failed", message: nil)

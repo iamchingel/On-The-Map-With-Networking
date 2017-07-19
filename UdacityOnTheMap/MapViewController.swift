@@ -20,7 +20,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
  
-         
+        
+        
+        
+        
        UdacityClient().getStudentLocations { (stuInfo, status) in
         if stuInfo != nil {
             DispatchQueue.main.async {
@@ -54,6 +57,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.completeLogout()
             }
        
+       
         
     }
     
@@ -82,11 +86,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     // annotation.title = "\(dictionary["firstName"]!) \(dictionary["lastName"]!)"
                     if let studentfirstName = dictionary["firstName"]  {
                         if let studentlastName = dictionary["lastName"] {
+                            if let studentURL = dictionary["mediaURL"] {
+                                
+                            
                             annotation.title = "\(studentfirstName) \(studentlastName)"
+                            annotation.subtitle = studentURL as? String
+                            }
                         }
                     }
+                  
                     
-                    annotation.subtitle = dictionary["mediaURL"]! as? String
+                    
+                   // annotation.subtitle = url as? String
                     
                     map.addAnnotation(annotation)
                 }
@@ -147,7 +158,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.present(controller!, animated: true, completion: nil)
         
         print("we should log out now")
-         */     DispatchQueue.main.async{
+         */
+            DispatchQueue.main.async{
         self.dismiss(animated: true, completion: nil)
         }
     }

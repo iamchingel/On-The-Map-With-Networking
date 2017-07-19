@@ -11,31 +11,35 @@ import MapKit
 
 
 struct StudentInformation {
-    var latitude: CLLocationDegrees?
-    var mapString: String?
-    var createdAt: String?
-    var uniqueKey: String?
-    var objectId: String?
-    var updatedAt: String?
-    var firstName: String?
-    var longitude: CLLocationDegrees?
-    var mediaURL: String?
-    var lastName: String?
+    var latitude: CLLocationDegrees!
+    var mapString: String!
+    var createdAt: String!
+    var uniqueKey: String!
+    var objectId: String!
+    var updatedAt: String!
+    var firstName: String!
+    var longitude: CLLocationDegrees!
+    var mediaURL: String!
+    var lastName: String!
     
   // i will add a dictionary as the argument.
     
     init(studentInformation : [String:AnyObject])
     {
-        latitude = studentInformation["latitude"] as? CLLocationDegrees
-        mapString = studentInformation["mapString"] as? String
-        createdAt = studentInformation["createdAt"] as? String
-        uniqueKey = studentInformation["uniqueKey"] as? String
-        objectId = studentInformation["objectId"] as? String
-        updatedAt = studentInformation["updatedAt"] as? String
-        firstName = studentInformation["firstName"] as? String
-        longitude = studentInformation["longitude"] as? CLLocationDegrees
-        mediaURL = studentInformation["mediaURL"] as? String
-        lastName = studentInformation["lastName"] as? String
+       
+        latitude = studentInformation["latitude"] != nil ? studentInformation["latitude"] as! CLLocationDegrees: 0.0
+        mapString = studentInformation["mapString"] != nil ? studentInformation["mapString"] as! String : ""
+        createdAt = studentInformation["createdAt"] != nil ? studentInformation["createdAt"] as! String : ""
+        uniqueKey = studentInformation["uniqueKey"] != nil ? studentInformation["uniqueKey"] as! String : ""
+        objectId = studentInformation["objectId"] != nil ? studentInformation["objectId"] as! String : ""
+        updatedAt = studentInformation["updatedAt"] != nil ? studentInformation["updatedAt"] as! String : ""
+        firstName = studentInformation["firstName"] != nil ? studentInformation["firstName"] as! String : ""
+        longitude = studentInformation["longitude"] != nil ? studentInformation["longitude"]  as! CLLocationDegrees : 0.0
+        mediaURL = studentInformation["mediaURL"] != nil ? studentInformation["mediaURL"] as! String : ""
+        lastName = studentInformation["lastName"] != nil ? studentInformation["lastName"] as! String : ""
+        
+        
+        
     }
  
     
@@ -51,10 +55,6 @@ struct StudentInformation {
         
         return students
     }
-    
-    
-    
-    
     
     
 }

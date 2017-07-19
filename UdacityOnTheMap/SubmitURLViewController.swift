@@ -25,21 +25,29 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+         
         // Do any additional setup after loading the view.
         
         enterURLTextField.delegate = self
         
         localSearchRequest = MKLocalSearchRequest()
         localSearchRequest.naturalLanguageQuery = myLocation!
+        
+        //starting activity indicator before GEOCODING begins.
+        
+        self.activityIndicator.center = self.view.center
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        
+        
         localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (localSearchResponse, error) -> Void in
             
            
-            self.activityIndicator.center = self.view.center
-            self.activityIndicator.hidesWhenStopped = true
-            self.activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-            self.view.addSubview(self.activityIndicator)
-            self.activityIndicator.startAnimating()
+            
             
             
             if localSearchResponse == nil{
@@ -86,10 +94,10 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
        
         //🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇
         
-        UdacityClient().addMyOwnPin { (response) in
-            if response != nil {
+        UdacityClient().addMyOwnPin { (error) in
+            if error != nil {
                 DispatchQueue.main.async{
-                self.alertView(title: "Post Failed", message: "Please try again later!")
+                self.alertView(title: "Error", message: "Error while posting data")
                 }
             }
             DispatchQueue.main.async{
@@ -98,10 +106,7 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
         }
         
         
-     //    UdacityClient().addMyOwnPin{
-     //       goBackToMapView()
-     //   }
-        
+   
     }
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -114,20 +119,21 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     }
     
     func switchBack() {
-        let controller = storyboard?.instantiateViewController(withIdentifier: "InfoPostViewController") as! InfoPostViewController
+        // let controller = storyboard?.instantiateViewController(withIdentifier: "InfoPostViewController") as! InfoPostViewController
         
-        present(controller, animated: true, completion: nil)
+        // present(controller, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func goBackToMapView () {
         //uncomment lines below
         
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
-        self.present(controller!, animated: true, completion: nil)
+      //  let controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
+       // self.present(controller!, animated: true, completion: nil)
         
         
         //Now my pin won't till i relaunch the app. Maybe I need the refresh button.
-      //  self.presentingViewController!.presentingViewController!.dismiss(animated: true, completion: nil)
+         self.presentingViewController!.presentingViewController!.dismiss(animated: true, completion: nil)
         
         
     }
