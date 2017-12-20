@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19D150641FEAC0C6003B68CD /* StudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D150631FEAC0C6003B68CD /* StudentData.swift */; };
 		C811BD1C1F171F9A009EDDF1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C811BD1B1F171F9A009EDDF1 /* AppDelegate.swift */; };
 		C811BD1E1F171F9A009EDDF1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C811BD1D1F171F9A009EDDF1 /* LoginViewController.swift */; };
 		C811BD211F171F9A009EDDF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C811BD1F1F171F9A009EDDF1 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19D150631FEAC0C6003B68CD /* StudentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentData.swift; sourceTree = "<group>"; };
 		C811BD181F171F9A009EDDF1 /* UdacityOnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacityOnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C811BD1B1F171F9A009EDDF1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C811BD1D1F171F9A009EDDF1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		C84CD88E1F1B59EB00015CF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				19D150631FEAC0C6003B68CD /* StudentData.swift */,
 				C84CD88F1F1B59F800015CF2 /* Clients */,
 			);
 			name = Model;
@@ -122,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				C811BD1F1F171F9A009EDDF1 /* Main.storyboard */,
-				C811BD241F171F9A009EDDF1 /* LaunchScreen.storyboard */,
 				C811BD221F171F9A009EDDF1 /* Assets.xcassets */,
+				C811BD241F171F9A009EDDF1 /* LaunchScreen.storyboard */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -163,12 +166,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Sanket Ray";
 				TargetAttributes = {
 					C811BD171F171F9A009EDDF1 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = J4H33JVA49;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -215,6 +219,7 @@
 				C85AA26F1F1CDD70006C9B86 /* StudentInformationClass.swift in Sources */,
 				C811BD2E1F172066009EDDF1 /* MapViewController.swift in Sources */,
 				C8A58A321F1A1D5F00D026B4 /* ListViewController.swift in Sources */,
+				19D150641FEAC0C6003B68CD /* StudentData.swift in Sources */,
 				C85AA26D1F1CCA09006C9B86 /* Student Information.swift in Sources */,
 				C811BD1C1F171F9A009EDDF1 /* AppDelegate.swift in Sources */,
 				C8A58A361F1A2BBF00D026B4 /* SubmitURLViewController.swift in Sources */,
@@ -254,7 +259,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -262,7 +269,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -305,7 +316,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -313,7 +326,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -348,7 +365,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Chingel.UdacityOnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -361,7 +379,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Chingel.UdacityOnTheMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

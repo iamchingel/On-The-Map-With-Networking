@@ -9,12 +9,8 @@
 import UIKit
 
 class UdacityClient: NSObject {
-
- 
     
-//LOGIN
-    
-    func attemptLogin( completionForLogin : @escaping (_ userID: String?, _ error: Error?, _ status: Int?)-> Void) {
+    class func attemptLogin( completionForLogin : @escaping (_ userID: String?, _ error: Error?, _ status: Int?)-> Void) {
    
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
@@ -26,7 +22,6 @@ class UdacityClient: NSObject {
             
             guard error == nil else {
                 print("Check network Connection")
-                
                 
                 completionForLogin(nil, error, nil)
                 return
@@ -54,9 +49,7 @@ class UdacityClient: NSObject {
                 print("error parsing data")
                 return
             }
-            
-            
-            print("🍒",parsedResult,"🍒")
+//            print("🍒",parsedResult,"🍒")
             
             guard let session = parsedResult["session"] else {
                 print("could not find session")
@@ -91,7 +84,7 @@ class UdacityClient: NSObject {
         
     }
 //LOGOUT
-    func logout (completion : @escaping (String)-> Void) {
+    class func logout (completion : @escaping (String)-> Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "DELETE"
@@ -142,8 +135,6 @@ class UdacityClient: NSObject {
             }
             
             completion(logoutSessionID! as! String)
-            print("🍛",logoutSessionID!,"🍛")
-            
             
         }
         task.resume()
@@ -153,7 +144,7 @@ class UdacityClient: NSObject {
     }
 //GETing student locations
     
-    func getStudentLocations (completionForStudentLocations : @escaping (_ studentInfo: [[String:AnyObject]]?, _ status: Int?)->Void) {
+    class func getStudentLocations (completionForStudentLocations : @escaping (_ studentInfo: [[String:AnyObject]]?, _ status: Int?)->Void) {
         
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -195,9 +186,9 @@ class UdacityClient: NSObject {
             StudentInformationClass.sharedInstance.studentDetails = StudentInformation.studentsFromResults(results)
             
             print("🥗🍇🍉",results.count,"🍇🥗🍉")
-            studentData = results
+            Data.studentData = results
             
-            completionForStudentLocations(studentData!,nil)
+            completionForStudentLocations(Data.studentData!,nil)
             
         }
         task.resume()
@@ -206,7 +197,7 @@ class UdacityClient: NSObject {
 
 //GETing My Details
     
-    func getMyDetails(userID : String){
+    class func getMyDetails(userID : String){
         
         
         let request = NSMutableURLRequest(url: URL(string: "https://www.udacity.com/api/users/\(userID)")!)
@@ -261,7 +252,7 @@ class UdacityClient: NSObject {
 
  //Add My Pin on the Map
     
-    func addMyOwnPin(completion : @escaping (_ error : Error?)->Void){
+    class func addMyOwnPin(completion : @escaping (_ error : Error?)->Void){
         
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
@@ -299,7 +290,6 @@ class UdacityClient: NSObject {
                 print("error parsing data")
                 return
             }
-            
             
             print("🍏",parsedResult,"🍏")
             

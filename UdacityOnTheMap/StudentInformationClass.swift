@@ -10,13 +10,8 @@ import Foundation
 
 class StudentInformationClass  {
     
-
-    
-
     var studentDetails: [StudentInformation] = []
-    
     static let sharedInstance = StudentInformationClass()
-    
     
 }
 

@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f9c-at-jxB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="f9c-at-jxB">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirNext.ttc">
+            <string>AvenirNext-DemiBold</string>
+            <string>AvenirNext-Regular</string>
+        </array>
+        <array key="Verdana.ttf">
+            <string>Verdana</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Map-->
         <scene sceneID="cC8-fg-A9X">
@@ -54,7 +63,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LPP-YZ-JI8" firstAttribute="top" secondItem="wSM-P2-R4U" secondAttribute="bottom" id="Nal-hx-kTi"/>
                             <constraint firstItem="5bR-Eu-Bfj" firstAttribute="top" secondItem="LPP-YZ-JI8" secondAttribute="bottom" id="V8A-M3-3R5"/>
@@ -115,7 +124,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xO-mZ-1PP" id="Xqx-g5-G0K">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -322,7 +331,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="302-CS-Lra" firstAttribute="bottom" secondItem="uVj-Yk-WD9" secondAttribute="top" id="95G-W9-Igt"/>
                             <constraint firstItem="3cO-ty-zkv" firstAttribute="leading" secondItem="goi-ir-Le1" secondAttribute="leading" id="A65-Oz-CE1"/>
@@ -364,13 +373,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RaC-kJ-0Bz">
-                                <rect key="frame" x="16" y="64" width="343" height="554"/>
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ep-2B-OQA">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="184.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ado-u6-VVd">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="184.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
                                                 <color key="backgroundColor" red="0.78118915320000004" green="0.78892369920000005" blue="0.78892369920000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <string key="text">Where are you
 studying
@@ -382,10 +391,10 @@ today?</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdV-dU-qcf">
-                                        <rect key="frame" x="0.0" y="184.5" width="343" height="185"/>
+                                        <rect key="frame" x="0.0" y="201" width="343" height="201"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Your Location Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dun-UO-n3D">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="185"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
                                                 <color key="backgroundColor" red="1" green="0.61122360890000005" blue="0.4247364595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="27"/>
@@ -394,10 +403,10 @@ today?</string>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzC-Sm-s7T">
-                                        <rect key="frame" x="0.0" y="369.5" width="343" height="184.5"/>
+                                        <rect key="frame" x="0.0" y="402" width="343" height="201"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ljR-zj-guo">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="184.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="201"/>
                                                 <color key="backgroundColor" red="0.71142855140000005" green="0.7184723985" blue="0.7184723985" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="35"/>
                                                 <state key="normal" title="Find on the Map">
@@ -441,7 +450,7 @@ today?</string>
                 <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Nte-FJ-jKH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dkr-sC-rT2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -460,7 +469,7 @@ today?</string>
                     <tabBarItem key="tabBarItem" title="List" image="icon_listview-selected" id="uTM-cz-y39"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MZj-O6-pF3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

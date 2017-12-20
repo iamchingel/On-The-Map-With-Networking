@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class SubmitURLViewController: UIViewController, UITextFieldDelegate {
 
@@ -24,10 +25,6 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-         
-        // Do any additional setup after loading the view.
         
         enterURLTextField.delegate = self
         
@@ -46,14 +43,11 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
         localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (localSearchResponse, error) -> Void in
             
-           
-            
-            
-            
             if localSearchResponse == nil{
                 let alertController = UIAlertController(title: nil, message: "Place Not Found", preferredStyle: UIAlertControllerStyle.alert)
                 
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { (action) in
+                    self.activityIndicator.stopAnimating() 
                     self.switchBack()
                 }))
                 
@@ -71,10 +65,13 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
             self.mapView.centerCoordinate = self.pointAnnotation.coordinate
             self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
             
-            
-            
             locationLatitude = localSearchResponse?.boundingRegion.center.latitude
             locationLongitude = localSearchResponse?.boundingRegion.center.longitude
+            
+            let centerCoordinate = CLLocationCoordinate2DMake(locationLatitude!, locationLongitude!)
+            let span = MKCoordinateSpanMake(0.1, 0.1)
+            let region = MKCoordinateRegionMake(centerCoordinate, span)
+            self.mapView.setRegion(region, animated: true)
             
             self.activityIndicator.stopAnimating()
             
@@ -91,10 +88,8 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     //Submit My Pin and move back to MapViewController
     @IBAction func submitButtonPressed(_ sender: Any) {
          myURL = enterURLTextField.text
-       
-        //🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇🍇
         
-        UdacityClient().addMyOwnPin { (error) in
+        UdacityClient.addMyOwnPin { (error) in
             if error != nil {
                 DispatchQueue.main.async{
                 self.alertView(title: "Error", message: "Error while posting data")
@@ -104,10 +99,8 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
             self.goBackToMapView()
             }
         }
-        
-        
-   
     }
+    
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -119,23 +112,11 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
     }
     
     func switchBack() {
-        // let controller = storyboard?.instantiateViewController(withIdentifier: "InfoPostViewController") as! InfoPostViewController
-        
-        // present(controller, animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
     }
     
     func goBackToMapView () {
-        //uncomment lines below
-        
-      //  let controller = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
-       // self.present(controller!, animated: true, completion: nil)
-        
-        
-        //Now my pin won't till i relaunch the app. Maybe I need the refresh button.
          self.presentingViewController!.presentingViewController!.dismiss(animated: true, completion: nil)
-        
-        
     }
     
     func alertView(title:String,message:String) {
@@ -148,7 +129,4 @@ class SubmitURLViewController: UIViewController, UITextFieldDelegate {
         
         self.present(alert, animated: true, completion: nil)
     }
-    
-    
-  
 }

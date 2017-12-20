@@ -23,14 +23,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (studentData?.count)!
+        return (Data.studentData?.count)!
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let dict = studentData?[indexPath.row]
+        let dict = Data.studentData?[indexPath.row]
         
         //wasn't able to use guard let statements...dunno why!!!🍋
         
@@ -48,7 +48,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dict = studentData?[indexPath.row]
+        let dict = Data.studentData?[indexPath.row]
         let studentURL = dict?["mediaURL"]
         if ((studentURL as! String) == "") {
             let alert = UIAlertController(title: "No URL Found", message: "", preferredStyle: .alert)
@@ -65,32 +65,27 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-    func logoutNow () {
+    @objc func logoutNow () {
         
-        UdacityClient().logout { _ in
+        UdacityClient.logout { _ in
             self.completeLogout()
         }
         
     }
     
     func completeLogout() {
-         
-      /*
-        let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-        self.present(controller!, animated: true, completion: nil)
         
-        print("we should log out now")
-         */     DispatchQueue.main.async{
-        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async{
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
-    func addLocation() {
+    @objc func addLocation() {
         let controller = storyboard?.instantiateViewController(withIdentifier: "NavigationController")
         self.present(controller!, animated: true, completion: nil)
     }
    
-    func refresh(){
+    @objc func refresh(){
         //doesn't refresh the tableView...why????  below code doesn't work
         
         DispatchQueue.main.async{

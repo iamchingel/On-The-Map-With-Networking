@@ -17,10 +17,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       UdacityClient().getStudentLocations { (stuInfo, status) in
+       UdacityClient.getStudentLocations { (stuInfo, status) in
         if stuInfo != nil {
             DispatchQueue.main.async {
-                self.drawPins(arrayOfDictionaries: studentData!)
+                self.drawPins(arrayOfDictionaries: Data.studentData!)
                 }
             }
         if status != nil {
@@ -29,8 +29,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
-        UdacityClient().attemptLogin { (UserID, nil, response) in
-            UdacityClient().getMyDetails(userID: UserID!)
+        UdacityClient.attemptLogin { (UserID, nil, response) in
+            UdacityClient.getMyDetails(userID: UserID!)
         }
         
     }
@@ -38,7 +38,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func LogoutButtonWasPressed(_ sender: Any) {
        
-        UdacityClient().logout { _ in
+        UdacityClient.logout { _ in
             self.completeLogout()
         }
     }
@@ -46,14 +46,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
         
-        DispatchQueue.main.async {
-            self.map.reloadInputViews()
+        UdacityClient.getStudentLocations { (stuInfo, status) in
+            if stuInfo != nil {
+                DispatchQueue.main.async {
+                    self.drawPins(arrayOfDictionaries: Data.studentData!)
+                }
+            }
+            if status != nil {
+                DispatchQueue.main.async {
+                    self.alertView(title: "Error Fetching Data", message: "Please try again later!")
+                }
+            }
         }
     }
     
-    
-    
-    // adding student pins to the Map
     func drawPins (arrayOfDictionaries: [[String:AnyObject]]) {
         
         for dictionary in arrayOfDictionaries {
@@ -64,18 +70,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     let annotation = MKPointAnnotation()
                     
                     annotation.coordinate = location
-                    // annotation.title = "\(dictionary["firstName"]!) \(dictionary["lastName"]!)"
-                    if let studentfirstName = dictionary["firstName"]  {
-                        if let studentlastName = dictionary["lastName"] {
-                            if let studentURL = dictionary["mediaURL"] {
-                                
-                            
-                            annotation.title = "\(studentfirstName) \(studentlastName)"
-                            annotation.subtitle = studentURL as? String
-                            }
-                        }
+                    guard let studentFirstName = dictionary["firstName"] else {
+                        return
                     }
-                   // annotation.subtitle = url as? String
+                    guard let studentLastName = dictionary["lastName"] else {
+                        return
+                    }
+                    guard let studentURL = dictionary["mediaURL"] else {
+                        return
+                    }
+                    annotation.title = "\(studentFirstName) \(studentLastName)"
+                    annotation.subtitle = studentURL as? String
                     map.addAnnotation(annotation)
                 }
             }
