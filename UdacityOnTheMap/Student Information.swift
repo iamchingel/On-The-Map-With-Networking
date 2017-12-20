@@ -30,9 +30,9 @@ struct StudentInformation {
         latitude = studentInformation["latitude"] != nil ? studentInformation["latitude"] as! CLLocationDegrees: 0.0
         mapString = studentInformation["mapString"] != nil ? studentInformation["mapString"] as! String : ""
         createdAt = studentInformation["createdAt"] != nil ? studentInformation["createdAt"] as! String : ""
-        uniqueKey = studentInformation["uniqueKey"] != nil ? studentInformation["uniqueKey"] as! String : ""
-        objectId = studentInformation["objectId"] != nil ? studentInformation["objectId"] as! String : ""
-        updatedAt = studentInformation["updatedAt"] != nil ? studentInformation["updatedAt"] as! String : ""
+        uniqueKey = studentInformation["uniqueKey"] != nil ? studentInformation["uniqueKey"] as? String : ""
+        objectId = studentInformation["objectId"] != nil ? studentInformation["objectId"] as? String : ""
+        updatedAt = studentInformation["updatedAt"] != nil ? studentInformation["updatedAt"] as? String : ""
         firstName = studentInformation["firstName"] != nil ? studentInformation["firstName"] as! String : ""
         longitude = studentInformation["longitude"] != nil ? studentInformation["longitude"]  as! CLLocationDegrees : 0.0
         mediaURL = studentInformation["mediaURL"] != nil ? studentInformation["mediaURL"] as! String : ""

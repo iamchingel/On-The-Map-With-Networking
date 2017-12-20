@@ -14,15 +14,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var map: MKMapView!
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
- 
-        
-        
-        
         
        UdacityClient().getStudentLocations { (stuInfo, status) in
         if stuInfo != nil {
@@ -36,34 +29,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
-        
-       //       UdacityClient().getStudentLocations { _ in
-        //          self.drawPins(arrayOfDictionaries: studentData!)
-        //      }
- 
         UdacityClient().attemptLogin { (UserID, nil, response) in
             UdacityClient().getMyDetails(userID: UserID!)
         }
         
     }
- 
+
     
     @IBAction func LogoutButtonWasPressed(_ sender: Any) {
-        
-     //I don't think its working correctly 
-        
        
-            UdacityClient().logout { _ in
-                self.completeLogout()
-            }
-       
-       
-        
+        UdacityClient().logout { _ in
+            self.completeLogout()
+        }
     }
     
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
-      // below code doesn't work
         
         DispatchQueue.main.async {
             self.map.reloadInputViews()
@@ -94,17 +75,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                             }
                         }
                     }
-                  
-                    
-                    
                    // annotation.subtitle = url as? String
-                    
                     map.addAnnotation(annotation)
                 }
             }
-            
         }
-        
     }
     
     
@@ -143,6 +118,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     self.present(alert, animated: true, completion: nil)
                 }
                 else {
+                    print("This got executed🥚")
                     UIApplication.shared.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
                 }
             }
@@ -152,13 +128,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     
     func completeLogout() {
-        // why isn't this working?
-        
-       /* let controller = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-        self.present(controller!, animated: true, completion: nil)
-        
-        print("we should log out now")
-         */
             DispatchQueue.main.async{
         self.dismiss(animated: true, completion: nil)
         }

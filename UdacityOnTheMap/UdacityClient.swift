@@ -29,15 +29,6 @@ class UdacityClient: NSObject {
                 
                 
                 completionForLogin(nil, error, nil)
-                /*The following code doesn't work...why????
-                 
-                 DispatchQueue.main.async {
-                 LoginViewController().alertView(title: "Network Error", message: "Please check you network connection")
-                 }
-                 */
-
-
-                
                 return
             }
             
@@ -45,13 +36,6 @@ class UdacityClient: NSObject {
                 print("wrong email id or password")
                 
                completionForLogin(nil, nil, (response as? HTTPURLResponse)?.statusCode)
-                /*The following code doesn't work...why????
-                 
-                 DispatchQueue.main.async {
-                 LoginViewController().alertView(title: "Incorrect Credentials", message: "Please enter correct email id and password")
-                 }
-                 
-                 */
                 return
             }
             
@@ -59,8 +43,6 @@ class UdacityClient: NSObject {
                 print("error fetching data")
                 return
             }
-            
-            
             
             let range = Range(5..<data.count)
             let newData = data.subdata(in: range) /* subset response data! */
@@ -101,9 +83,6 @@ class UdacityClient: NSObject {
             DispatchQueue.main.async{
                 completionForLogin(userID!, nil, nil)
             }
-            
-            
-            
             
         }
         task.resume()
@@ -191,12 +170,6 @@ class UdacityClient: NSObject {
                 print("Status Code was other than 2xx🍋")
                 
                 completionForStudentLocations(nil,(response as? HTTPURLResponse)?.statusCode)
-                /*
-                 DispatchQueue.main.async {
-                 LoginViewController().alertView(title: "Download Failed", message: "Something Went Wrong!")
-                 }
-                 */
-                
                 return
             }
             guard let data = data else {
@@ -221,20 +194,8 @@ class UdacityClient: NSObject {
             
             StudentInformationClass.sharedInstance.studentDetails = StudentInformation.studentsFromResults(results)
             
-           //saving data to "Student Information Structure and I don't feel like using it right now"
-          //self.students = StudentInformation.studentsFromResults(results)
-         //self.users?.studentsLocationData = StudentInformation.studentsFromResults(results)
-            
             print("🥗🍇🍉",results.count,"🍇🥗🍉")
-            
-       //      print("🏓🍟🥒🌶🍚",self.students,"🏓🍟🥒🌶🍚")
-      //      print(self.students.count,"🍶🍶🍶🍶🍶🍶🍶🍶🍶")
-            
-            //🍇 updating student Data...Uncomment the line below
             studentData = results
-            
-            
-           
             
             completionForStudentLocations(studentData!,nil)
             
@@ -302,8 +263,6 @@ class UdacityClient: NSObject {
     
     func addMyOwnPin(completion : @escaping (_ error : Error?)->Void){
         
-        
-        
         let request = NSMutableURLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -326,12 +285,6 @@ class UdacityClient: NSObject {
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 print("Status Code was other than 2xx")
                 
-               // completion((response as? HTTPURLResponse)?.statusCode)
-                /*
-                 DispatchQueue.main.async {
-                 LoginViewController().alertView(title: "Request Failed", message: nil)
-                 }
-                 */
                 return
             }
             guard let data = data else {
@@ -355,11 +308,5 @@ class UdacityClient: NSObject {
         }
         task.resume()
         
-        
-        
-        
     }
-
-    
-
 }
