@@ -20,7 +20,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
        UdacityClient.getStudentLocations { (stuInfo, status) in
         if stuInfo != nil {
             DispatchQueue.main.async {
-                self.drawPins(arrayOfDictionaries: Data.studentData!)
+                UdacityClient.drawPins(arrayOfDictionaries: Data.studentData!){ (annotation) in
+                        self.map.addAnnotation(annotation!)
+                    }
                 }
             }
         if status != nil {
@@ -45,11 +47,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     
     @IBAction func refreshButtonPressed(_ sender: Any) {
-        
+        map.removeAnnotations(map.annotations)
         UdacityClient.getStudentLocations { (stuInfo, status) in
             if stuInfo != nil {
                 DispatchQueue.main.async {
-                    self.drawPins(arrayOfDictionaries: Data.studentData!)
+                    UdacityClient.drawPins(arrayOfDictionaries: Data.studentData!) { (annotation) in
+                        self.map.addAnnotation(annotation!)
+                    }
                 }
             }
             if status != nil {
@@ -60,32 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func drawPins (arrayOfDictionaries: [[String:AnyObject]]) {
-        
-        for dictionary in arrayOfDictionaries {
-            
-            if let latitude = dictionary["latitude"]  {
-                if let longitude = dictionary["longitude"]  {
-                    let location = CLLocationCoordinate2DMake(latitude as! CLLocationDegrees, longitude as! CLLocationDegrees)
-                    let annotation = MKPointAnnotation()
-                    
-                    annotation.coordinate = location
-                    guard let studentFirstName = dictionary["firstName"] else {
-                        return
-                    }
-                    guard let studentLastName = dictionary["lastName"] else {
-                        return
-                    }
-                    guard let studentURL = dictionary["mediaURL"] else {
-                        return
-                    }
-                    annotation.title = "\(studentFirstName) \(studentLastName)"
-                    annotation.subtitle = studentURL as? String
-                    map.addAnnotation(annotation)
-                }
-            }
-        }
-    }
+
     
     
     
@@ -123,7 +102,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     self.present(alert, animated: true, completion: nil)
                 }
                 else {
-                    print("This got executed🥚")
                     UIApplication.shared.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
                 }
             }

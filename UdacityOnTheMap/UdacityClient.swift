@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class UdacityClient: NSObject {
     
@@ -180,14 +182,12 @@ class UdacityClient: NSObject {
                 print("error processing parsed Result")
                 return
             }
-            //result is of the type [[String:Any]]
-            print(results)
             
-            StudentInformationClass.sharedInstance.studentDetails = StudentInformation.studentsFromResults(results)
+            DispatchQueue.main.async{
+                StudentInformationClass.sharedInstance.studentDetails = StudentInformation.studentsFromResults(results)
+            }
             
-            print("🥗🍇🍉",results.count,"🍇🥗🍉")
             Data.studentData = results
-            
             completionForStudentLocations(Data.studentData!,nil)
             
         }
@@ -290,13 +290,37 @@ class UdacityClient: NSObject {
                 print("error parsing data")
                 return
             }
-            
-            print("🍏",parsedResult,"🍏")
-            
             completion(nil)
             
         }
         task.resume()
         
+    }
+    class func drawPins (arrayOfDictionaries: [[String:AnyObject]], completion: @escaping (_ annotaion: MKPointAnnotation?)-> Void) {
+        
+        for dictionary in arrayOfDictionaries {
+            
+            if let latitude = dictionary["latitude"]  {
+                if let longitude = dictionary["longitude"]  {
+                    let location = CLLocationCoordinate2DMake(latitude as! CLLocationDegrees, longitude as! CLLocationDegrees)
+                    let annotation = MKPointAnnotation()
+                    
+                    annotation.coordinate = location
+                    guard let studentFirstName = dictionary["firstName"] else {
+                        return
+                    }
+                    guard let studentLastName = dictionary["lastName"] else {
+                        return
+                    }
+                    guard let studentURL = dictionary["mediaURL"] else {
+                        return
+                    }
+                    annotation.title = "\(studentFirstName) \(studentLastName)"
+                    annotation.subtitle = studentURL as? String
+//                    map.addAnnotation(annotation)
+                    completion(annotation)
+                }
+            }
+        }
     }
 }
